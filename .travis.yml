@@ -27,7 +27,7 @@ before_install:
  
 # Build development images for test
 before_script:
-  - docker build -t juniornsa/apache .
+  - docker build -t j$DOCKER_HUB_ID/apache .
 
  
 # Run some tests
@@ -39,7 +39,7 @@ after_success:
   # Login to Docker Hub
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
 
-  - docker push juniornsa/apache 
+  - docker push $DOCKER_HUB_ID/apache 
 
 deploy:
   provider: elasticbeanstalk
